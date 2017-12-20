@@ -23,11 +23,11 @@ import marvin.plugin.MarvinImagePlugin;
 import marvin.util.MarvinPluginLoader;
 
 /**
- * Project´s about dialog.
+ * Projectæ„€ about dialog.
  * @version 1.0 29/01/09 
  * @author Fabio Andrijaukas
- * @author Gabriel Ambrósio Archanjo
- * @author Danilo Rosetto Muñoz
+ * @author Gabriel Ambré€io Archanjo
+ * @author Danilo Rosetto Muéš³z
  */
 public class AboutDialog extends JDialog implements Runnable{
 	private Thread 				thread;
@@ -92,9 +92,9 @@ public class AboutDialog extends JDialog implements Runnable{
 		String l_strText = "";
 		l_strText += "   MARVIN Project\n\n";
 		l_strText += "   Initial version by:\n";
-		l_strText += "   Danilo Rosetto Muñoz\n";
+		l_strText += "   Danilo Rosetto Muéš³z\n";
 		l_strText += "   Fabio Andrijauskas\n";
-		l_strText += "   Gabriel Ambrósio Archanjo\n\n";
+		l_strText += "   Gabriel Ambré€io Archanjo\n\n";
 				
 		l_strText += "   site: http://marvinproject.sourceforge.net\n";		
 		l_strText += "   \n\n";

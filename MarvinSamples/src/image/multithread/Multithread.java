@@ -35,7 +35,7 @@ import org.marvinproject.image.statistical.maximum.Maximum;
 
 /**
  * Processing images single and multi threaded.
- * @author Gabriel AmbrÛsio Archanjo
+ * @author Gabriel AmbrÈèÄio Archanjo
  */
 public class Multithread extends JFrame implements MarvinThreadListener{
 	
@@ -144,8 +144,8 @@ public class Multithread extends JFrame implements MarvinThreadListener{
 			imageIn.getHeight(),		// height
 			0,							// x-start
 			0,							// y-start
-			imageIn.getWidth(),			// region¥s width
-			imageIn.getHeight()/2		// region¥s height
+			imageIn.getWidth(),			// regionÊÑÄ width
+			imageIn.getHeight()/2		// regionÊÑÄ height
 		);
 		
 		MarvinImageMask l_mask2 = new MarvinImageMask
@@ -154,8 +154,8 @@ public class Multithread extends JFrame implements MarvinThreadListener{
 			imageIn.getHeight(),		// height
 			0,							// x-start
 			imageIn.getHeight()/2,		// y-start
-			imageIn.getWidth(),			// region¥s width
-			imageIn.getHeight()/2		// region¥s height
+			imageIn.getWidth(),			// regionÊÑÄ width
+			imageIn.getHeight()/2		// regionÊÑÄ height
 		);
 		
 		
