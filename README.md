@@ -11,3 +11,14 @@ http://marvinproject.sourceforge.net/
 https://groups.google.com/forum/#!forum/marvin-project
 
 
+## QuickStart
+
+- clone and import into IDE
+
+``` bash
+git clone https://github.com/downgoon/marvin
+```
+
+Dependency Tree: ``MarvinSamples`` => ``MarvinPlugins`` => ``MarvinFramework`` => ``JavaCV``
+
+- [howto](MarvinSamples/docs/howto.md): ``how to`` step-by-step showcases
