@@ -5,7 +5,7 @@
 	<groupId>com.github.downgoon</groupId>
 	<artifactId>marvin</artifactId>
 	<packaging>pom</packaging>
-	<version>1.5.5-SNAPSHOT</version>
+	<version>1.5.5</version>
 	<name>marvin</name>
 	<description>Marvin Image Processing Framework provides features for processing images and videos in real-time</description>
 	<url>https://github.com/downgoon/marvin</url>
@@ -22,7 +22,7 @@
 		<connection>scm:git:git@github.com:downgoon/marvin.git</connection>
 		<developerConnection>scm:git:git@github.com:downgoon/marvin.git</developerConnection>
 		<url>https://github.com/downgoon/marvin</url>
-		<tag>marvin-1.5.5-SNAPSHOT</tag>
+		<tag>marvin-1.5.5</tag>
 	</scm>
 
 	<developers>

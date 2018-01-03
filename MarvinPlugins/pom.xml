@@ -4,7 +4,7 @@
   <parent>
 			<groupId>com.github.downgoon</groupId>
 			<artifactId>marvin</artifactId>
-			<version>1.5.5-SNAPSHOT</version>
+			<version>1.5.5</version>
 		</parent>
 
 	<artifactId>MarvinPlugins</artifactId>
@@ -14,7 +14,7 @@
 		<dependency>
 			<groupId>com.github.downgoon</groupId>
 			<artifactId>MarvinFramework</artifactId>
-			<version>1.5.5-SNAPSHOT</version>
+			<version>1.5.5</version>
 		</dependency>
 
 	</dependencies>
