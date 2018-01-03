@@ -7,6 +7,7 @@
 - [showcase 系列](#showcase-系列)
 	- [Filters 滤镜](#filters-滤镜)
 	- [Motion Detection 运动检测](#motion-detection-运动检测)
+	- [Text Detection 文本识别](#text-detection-文本识别)
 
 <!-- /TOC -->
 
@@ -31,3 +32,7 @@
 - 找出不同像素：从视频中抽取若干帧，用当前帧与上一帧对比，找出不同的像素。
 - 将像素分组：通过分析他们的邻近关系，将这些像素分成若干组。
 - 框出每组的运动区：每个组里面都有一个运动区，对这个运动区用矩形图框出来。
+
+## Text Detection 文本识别
+
+这里的``文本识别``是识别图片中的文字区域，并没有转化成文字。官方教程地址是：[examples/findTextRegions.html](http://marvinproject.sourceforge.net/en/examples/findTextRegions.html)；代码是：[TextRegions.java](../src/test/java/showcase/TextRegions.java)
