@@ -23,6 +23,8 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.marvinproject.image.difference.differentRegions.DifferentRegions;
+
 import marvin.gui.MarvinImagePanel;
 import marvin.image.MarvinImage;
 import marvin.image.MarvinImageMask;
@@ -31,8 +33,6 @@ import marvin.util.MarvinAttributes;
 import marvin.video.MarvinJavaCVAdapter;
 import marvin.video.MarvinVideoInterface;
 import marvin.video.MarvinVideoInterfaceException;
-
-import org.marvinproject.image.difference.differentRegions.DifferentRegions;
 
 /**
  * Detect the motion regions considering the difference between frames.
