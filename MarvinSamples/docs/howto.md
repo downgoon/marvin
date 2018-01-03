@@ -12,6 +12,7 @@
 	- [Thumbnail 缩略图](#thumbnail-缩略图)
 	- [Background 背景色](#background-背景色)
 	- [EdgeDetection](#edgedetection)
+	- [摄像头拍照](#摄像头拍照)
 
 <!-- /TOC -->
 
@@ -217,6 +218,34 @@ public class EdgeDetection {
 		MarvinImageIO.saveImage(imageOut3, "target/howto_edge_roberts.jpg");
 
 		System.out.println("edge detection fully finish");
+	}
+}
+```
+
+## 摄像头拍照
+
+项目借助了``OpenCV``从摄像头拍照。Mac的摄像头的``deviceIndex``是0，不是1。
+
+``` java
+package howto;
+
+import marvin.image.MarvinImage;
+import marvin.io.MarvinImageIO;
+import marvin.video.MarvinJavaCVAdapter;
+import marvin.video.MarvinVideoInterface;
+import marvin.video.MarvinVideoInterfaceException;
+
+public class WebcamPicture {
+
+	public static void main(String[] args) {
+		try {
+			MarvinVideoInterface videoAdapter = new MarvinJavaCVAdapter();
+			videoAdapter.connect(0); // deviceIndex=0 表示摄像头
+			MarvinImage image = videoAdapter.getFrame(); // 抓一帧
+			MarvinImageIO.saveImage(image, "target/webcam_picture.jpg");
+		} catch (MarvinVideoInterfaceException e) {
+			e.printStackTrace();
+		}
 	}
 }
 ```
