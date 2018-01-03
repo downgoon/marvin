@@ -8,7 +8,7 @@
 	<version>1.5.5-SNAPSHOT</version>
 	<name>marvin</name>
 	<description>Marvin Image Processing Framework provides features for processing images and videos in real-time</description>
-	<url>https://github.com/downgoon/marvinproject</url>
+	<url>https://github.com/downgoon/marvin</url>
 
 	<licenses>
 		<license>
@@ -19,9 +19,9 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:git@github.com:downgoon/marvinproject.git</connection>
-		<developerConnection>scm:git:git@github.com:downgoon/marvinproject.git</developerConnection>
-		<url>https://github.com/downgoon/marvinproject</url>
+		<connection>scm:git:git@github.com:downgoon/marvin.git</connection>
+		<developerConnection>scm:git:git@github.com:downgoon/marvin.git</developerConnection>
+		<url>https://github.com/downgoon/marvin</url>
 		<tag>marvin-1.5.5-SNAPSHOT</tag>
 	</scm>
 
