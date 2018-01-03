@@ -129,14 +129,15 @@ public class DetectMotionRegions extends JFrame implements Runnable {
 					MarvinImage.copyColorArray(imageIn, imageOut);
 					pluginMotionRegions.process(imageIn, imageOut, attributesOut, MarvinImageMask.NULL_MASK, false);
 
+					@SuppressWarnings("unchecked")
 					Vector<int[]> regions = (Vector<int[]>) attributesOut.get("regions");
 
 					for (int i = 0; i < regions.size(); i++) {
 						tempRect = regions.get(i);
 						imageOut.drawRect(tempRect[0], tempRect[1], tempRect[2] - tempRect[0],
-								tempRect[3] - tempRect[1], Color.red);
+								tempRect[3] - tempRect[1], Color.GREEN); // Color.red
 						imageOut.drawRect(tempRect[0] + 1, tempRect[1] + 1, (tempRect[2] - tempRect[0]) - 2,
-								(tempRect[3] - tempRect[1]) - 2, Color.red);
+								(tempRect[3] - tempRect[1]) - 2, Color.GREEN); // Color.red
 					}
 
 					videoPanel.setImage(imageOut);
