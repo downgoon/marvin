@@ -23,14 +23,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import marvin.gui.MarvinImagePanel;
-import marvin.image.MarvinImage;
-import marvin.image.MarvinImageMask;
-import marvin.plugin.MarvinImagePlugin;
-import marvin.video.MarvinJavaCVAdapter;
-import marvin.video.MarvinVideoInterface;
-import marvin.video.MarvinVideoInterfaceException;
-
 import org.marvinproject.image.artistic.television.Television;
 import org.marvinproject.image.blur.pixelize.Pixelize;
 import org.marvinproject.image.color.grayScale.GrayScale;
@@ -44,12 +36,22 @@ import org.marvinproject.image.statistical.maximum.Maximum;
 import org.marvinproject.image.statistical.minimum.Minimum;
 import org.marvinproject.image.transform.flip.Flip;
 
+import marvin.gui.MarvinImagePanel;
+import marvin.image.MarvinImage;
+import marvin.image.MarvinImageMask;
+import marvin.plugin.MarvinImagePlugin;
+import marvin.video.MarvinJavaCVAdapter;
+import marvin.video.MarvinVideoInterface;
+import marvin.video.MarvinVideoInterfaceException;
+
 /**
  * Using filters with video.
  * @author Gabriel Ambrosio Archanjo
  */
 public class VideoFilters extends JFrame implements Runnable{
 	
+	private static final long serialVersionUID = 222257647048263441L;
+
 	// GUI
 	private JPanel 				panelButton,
 								panelWest,

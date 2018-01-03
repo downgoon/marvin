@@ -28,29 +28,29 @@ public class MoravecExample {
 		moravec.setAttribute("threshold", 50000);
 		
 		// 1. Figures
-		MarvinImage imageIn = MarvinImageIO.loadImage("./res/moravec.png");
+		MarvinImage imageIn = MarvinImageIO.loadImage("src/main/resources/moravec.png");
 		MarvinAttributes attr = new MarvinAttributes();
 		moravec.process(imageIn, null, attr);
 		imageIn = showCorners(imageIn, attr, 6);
-		MarvinImageIO.saveImage(imageIn, "./res/moravec_out.png");
+		MarvinImageIO.saveImage(imageIn, "src/main/resources/moravec_out.png");
 		
 		// 2. Face
 		moravec.setAttribute("threshold", 2000);
 		moravec.setAttribute("matrixSize", 7);
-		imageIn = MarvinImageIO.loadImage("./res/alan.jpg");
+		imageIn = MarvinImageIO.loadImage("src/main/resources/alan.jpg");
 		attr = new MarvinAttributes();
 		moravec.process(imageIn, null, attr);
 		imageIn = showCorners(imageIn, attr, 3);
-		MarvinImageIO.saveImage(imageIn, "./res/alanOut.png");
+		MarvinImageIO.saveImage(imageIn, "src/main/resources/alanOut.png");
 		
 		// 3. House
 		moravec.setAttribute("threshold", 1500);
 		moravec.setAttribute("matrixSize", 7);
-		imageIn = MarvinImageIO.loadImage("./res/cards.jpg");
+		imageIn = MarvinImageIO.loadImage("src/main/resources/cards.jpg");
 		attr = new MarvinAttributes();
 		moravec.process(imageIn, null, attr);
 		imageIn = showCorners(imageIn, attr, 3);
-		MarvinImageIO.saveImage(imageIn, "./res/cardsOut.png");
+		MarvinImageIO.saveImage(imageIn, "src/main/resources/cardsOut.png");
 	}
 	
 	private static MarvinImage showCorners(MarvinImage image, MarvinAttributes attr, int rectSize){

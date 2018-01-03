@@ -11,6 +11,7 @@ https://groups.google.com/forum/#!forum/marvin-project
 
 package video.simpleVideoTest;
 import javax.swing.JFrame;
+
 import marvin.gui.MarvinImagePanel;
 import marvin.image.MarvinImage;
 import marvin.video.MarvinJavaCVAdapter;
@@ -19,6 +20,7 @@ import marvin.video.MarvinVideoInterfaceException;
 
 public class SimpleVideoTest extends JFrame implements Runnable{
 	
+	private static final long serialVersionUID = 373678297096403562L;
 	private MarvinVideoInterface 	videoAdapter;
 	private MarvinImage				image;
 	private MarvinImagePanel 		videoPanel;

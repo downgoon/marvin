@@ -25,6 +25,10 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.marvinproject.image.combine.combineByMask.CombineByMask;
+import org.marvinproject.image.subtract.Subtract;
+import org.marvinproject.image.transform.scale.Scale;
+
 import marvin.gui.MarvinImagePanel;
 import marvin.image.MarvinImage;
 import marvin.io.MarvinImageIO;
@@ -33,16 +37,13 @@ import marvin.video.MarvinJavaCVAdapter;
 import marvin.video.MarvinVideoInterface;
 import marvin.video.MarvinVideoInterfaceException;
 
-import org.marvinproject.image.combine.combineByMask.CombineByMask;
-import org.marvinproject.image.subtract.Subtract;
-import org.marvinproject.image.transform.scale.Scale;
-
 /**
  * Subtract the background and combine other image.
  * @author Gabriel Ambrosio Archanjo
  */
 public class ChromaKey extends JFrame implements Runnable{
 	
+	private static final long serialVersionUID = 6971196346555334548L;
 	private JPanel 					panelBottom,
 									panelSlider;	
 	private JSlider					sliderColorRange;
@@ -88,7 +89,7 @@ public class ChromaKey extends JFrame implements Runnable{
 			pluginCombine = new CombineByMask();
 			pluginCombine.load();
 			
-			MarvinImage l_imageParadise = MarvinImageIO.loadImage("./res/paradise.jpg");
+			MarvinImage l_imageParadise = MarvinImageIO.loadImage("src/main/resources/paradise.jpg");
 			Integer cameraWidth = videoInterface.getImageWidth();
 			Integer cameraHeight = videoInterface.getImageHeight();
 			 		

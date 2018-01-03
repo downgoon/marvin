@@ -24,6 +24,10 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.marvinproject.image.pattern.findColorPattern.FindColorPattern;
+import org.marvinproject.image.render.renderText.RenderText;
+import org.marvinproject.image.transform.flip.Flip;
+
 import marvin.gui.MarvinImagePanel;
 import marvin.image.MarvinImage;
 import marvin.image.MarvinImageMask;
@@ -34,16 +38,13 @@ import marvin.video.MarvinJavaCVAdapter;
 import marvin.video.MarvinVideoInterface;
 import marvin.video.MarvinVideoInterfaceException;
 
-import org.marvinproject.image.pattern.findColorPattern.FindColorPattern;
-import org.marvinproject.image.render.renderText.RenderText;
-import org.marvinproject.image.transform.flip.Flip;
-
 /**
  * Tracking game sample
  * @author Gabriel Ambrosio Archanjo
  */
 public class TrackingPong extends JFrame implements Runnable{
 
+	private static final long serialVersionUID = -1478144211763350780L;
 	private final static int 		BALL_INITIAL_PX=100;
 	private final static int 		BALL_INITIAL_PY=100;
 	private final static int 		BALL_INITIAL_SPEED=3;
@@ -126,13 +127,13 @@ public class TrackingPong extends JFrame implements Runnable{
 			flip.load();
 			text				= new RenderText();
 			text.load();
-			text.setAttribute("fontFile", MarvinImageIO.loadImage("./res/font.png"));
+			text.setAttribute("fontFile", MarvinImageIO.loadImage("src/main/resources/font.png"));
 			text.setAttribute("color", 0xFFFFFFFF);
 			
 			// 3. Load game images
-			imageBall = MarvinImageIO.loadImage("./res/ball.png");
-			imagePaddlePlayer = MarvinImageIO.loadImage("./res/paddleA.png");
-			imagePaddleComputer = MarvinImageIO.loadImage("./res/paddleB.png");
+			imageBall = MarvinImageIO.loadImage("src/main/resources/ball.png");
+			imagePaddlePlayer = MarvinImageIO.loadImage("src/main/resources/paddleA.png");
+			imagePaddleComputer = MarvinImageIO.loadImage("src/main/resources/paddleB.png");
 			
 			attributesOut = new MarvinAttributes(null);
 			

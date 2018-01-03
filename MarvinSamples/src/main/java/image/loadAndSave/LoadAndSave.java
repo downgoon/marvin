@@ -13,11 +13,11 @@ package image.loadAndSave;
 
 import javax.swing.JFrame;
 
+import org.marvinproject.image.color.invert.Invert;
+
 import marvin.image.MarvinImage;
 import marvin.io.MarvinImageIO;
 import marvin.plugin.MarvinImagePlugin;
-
-import org.marvinproject.image.color.invert.Invert;
 
 /**
  * Load and save sample.
@@ -25,6 +25,8 @@ import org.marvinproject.image.color.invert.Invert;
  */
 public class LoadAndSave extends JFrame
 {
+	private static final long serialVersionUID = -7576155596286512246L;
+
 	public LoadAndSave()
 	{
 		super("Load and Save Sample");
@@ -36,7 +38,7 @@ public class LoadAndSave extends JFrame
 	private void process(){
 		// 1. Load Image
 		MarvinImage l_image;
-		l_image = MarvinImageIO.loadImage("./res/arara.jpg");
+		l_image = MarvinImageIO.loadImage("src/main/resources/arara.jpg");
 		
 		MarvinImagePlugin l_pluginImage = new Invert();
 		l_pluginImage.load();
@@ -45,7 +47,7 @@ public class LoadAndSave extends JFrame
 		
 		// 2. Load plug-in
 		if(l_image != null){
-			MarvinImageIO.saveImage(l_image, "./res/araraNegative.jpg");
+			MarvinImageIO.saveImage(l_image, "src/main/resources/araraNegative.jpg");
 		}		
 	}
 	

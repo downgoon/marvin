@@ -21,6 +21,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.marvinproject.image.statistical.maximum.Maximum;
+
 import marvin.gui.MarvinImagePanel;
 import marvin.image.MarvinImage;
 import marvin.image.MarvinImageMask;
@@ -29,16 +31,15 @@ import marvin.plugin.MarvinImagePlugin;
 import marvin.thread.MarvinThread;
 import marvin.thread.MarvinThreadEvent;
 import marvin.thread.MarvinThreadListener;
-import marvin.util.MarvinPluginLoader;
-
-import org.marvinproject.image.statistical.maximum.Maximum;
 
 /**
  * Processing images single and multi threaded.
  * @author Gabriel Ambr鏀io Archanjo
  */
 public class Multithread extends JFrame implements MarvinThreadListener{
-	
+
+	private static final long serialVersionUID = 6748766294528594620L;
+
 	// Interface Components
 	private JButton				buttonSingleThread,
 								buttonMultiThread,
@@ -96,7 +97,7 @@ public class Multithread extends JFrame implements MarvinThreadListener{
 	}
 	
 	private void loadImages(){
-		originalImage = MarvinImageIO.loadImage("./res/senna.jpg");
+		originalImage = MarvinImageIO.loadImage("src/main/resources/senna.jpg");
 		imageIn = new MarvinImage(originalImage.getWidth(), originalImage.getHeight());
 		imageOut = new MarvinImage(originalImage.getWidth(), originalImage.getHeight());
 		imagePanel.setImage(originalImage);

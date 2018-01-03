@@ -20,23 +20,23 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.marvinproject.image.color.brightnessAndContrast.BrightnessAndContrast;
+import org.marvinproject.image.color.invert.Invert;
+import org.marvinproject.image.edge.edgeDetector.EdgeDetector;
+
 import marvin.gui.MarvinImagePanel;
 import marvin.image.MarvinImage;
 import marvin.io.MarvinImageIO;
 import marvin.plugin.MarvinImagePlugin;
 import marvin.util.MarvinPluginHistory;
 
-import org.marvinproject.image.color.brightnessAndContrast.BrightnessAndContrast;
-import org.marvinproject.image.color.invert.Invert;
-import org.marvinproject.image.edge.edgeDetector.EdgeDetector;
-
 /**
  * History sample
  * @author Gabriel Ambrosio Archanjo
- *
  */
 public class History extends JFrame {
 	
+	private static final long serialVersionUID = -1969606652291318686L;
 	// GUI
 	JButton buttonShowHistory;
 	JButton buttonApply;
@@ -75,7 +75,7 @@ public class History extends JFrame {
 		l_c.add(l_panelTop, BorderLayout.NORTH);
 		l_c.add(l_panelBottom, BorderLayout.SOUTH);
 		
-		originalImage = MarvinImageIO.loadImage("./res/tucano.jpg");
+		originalImage = MarvinImageIO.loadImage("src/main/resources/tucano.jpg");
 		imagePanelOriginal.setImage(originalImage);
 		imagePanelNew.setPreferredSize(imagePanelOriginal.getPreferredSize());
 		
