@@ -22,3 +22,4 @@ git clone https://github.com/downgoon/marvin
 Dependency Tree: ``MarvinSamples`` => ``MarvinPlugins`` => ``MarvinFramework`` => ``JavaCV``
 
 - [howto](MarvinSamples/docs/howto.md): ``how to`` step-by-step showcases
+- [showcase](MarvinSamples/docs/showcase.md): user-story showcases
