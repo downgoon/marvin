@@ -10,6 +10,8 @@
 	- [Resize/Scale 缩放](#resizescale-缩放)
 	- [Crop 裁剪](#crop-裁剪)
 	- [Thumbnail 缩略图](#thumbnail-缩略图)
+	- [Background 背景色](#background-背景色)
+	- [EdgeDetection](#edgedetection)
 
 <!-- /TOC -->
 
@@ -137,5 +139,84 @@ public class Thumbnail {
 		MarvinImageIO.saveImage(imageOut, "target/howto_thumbnail_h80.jpg");
 	}
 
+}
+```
+
+## Background 背景色
+
+- 关键代码
+
+``` java
+MarvinPluginCollection.boundaryFill(imageIn, imageOut, 0, 0, Color.RED);
+```
+
+- 完整代码：[Background.java](../src/test/java/howto/Background.java)
+
+``` java
+package howto;
+
+import java.awt.Color;
+
+import marvin.image.MarvinImage;
+import marvin.io.MarvinImageIO;
+import marvinplugins.MarvinPluginCollection;
+
+public class Background {
+
+	public static void main(String[] args) throws Exception {
+		MarvinImage imageIn = MarvinImageIO.loadImage("src/test/resources/howto.jpg");
+		// MarvinImage imageOut = new MarvinImage();
+		MarvinImage imageOut = imageIn.clone();
+		MarvinPluginCollection.boundaryFill(imageIn, imageOut, 0, 0, Color.RED);
+		imageOut.setAlphaToColor(0);
+		MarvinPluginCollection.alphaBoundary(imageOut, 5);
+		MarvinImageIO.saveImage(imageOut, "target/howto_background.jpg");
+	}
+}
+```
+
+## EdgeDetection
+
+``Edge Detection`` 有三种算法，分别是：``prewitt``, ``sobel`` 和 ``roberts``。
+
+- 关键代码
+
+``` java
+MarvinPluginCollection.prewitt(imageIn, imageOut1);
+
+MarvinPluginCollection.sobel(imageIn, imageOut2);
+
+MarvinPluginCollection.roberts(imageIn, imageOut3);
+```
+
+- 完整代码：[EdgeDetection.java](../src/test/java/howto/EdgeDetection.java)
+
+``` java
+package howto;
+
+import marvin.image.MarvinImage;
+import marvin.io.MarvinImageIO;
+import marvinplugins.MarvinPluginCollection;
+
+public class EdgeDetection {
+
+	public static void main(String[] args) throws Exception {
+		MarvinImage imageIn = MarvinImageIO.loadImage("src/test/resources/howto.jpg");
+		MarvinImage imageOut1 = new MarvinImage(imageIn.getWidth(), imageIn.getHeight());
+		MarvinPluginCollection.prewitt(imageIn, imageOut1);
+		MarvinImageIO.saveImage(imageOut1, "target/howto_edge_prewitt.jpg");
+
+
+		MarvinImage imageOut2 = new MarvinImage(imageIn.getWidth(), imageIn.getHeight());
+		MarvinPluginCollection.sobel(imageIn, imageOut2);
+		MarvinImageIO.saveImage(imageOut2, "target/howto_edge_sobel.jpg");
+
+
+		MarvinImage imageOut3 = new MarvinImage(imageIn.getWidth(), imageIn.getHeight());
+		MarvinPluginCollection.roberts(imageIn, imageOut3);
+		MarvinImageIO.saveImage(imageOut3, "target/howto_edge_roberts.jpg");
+
+		System.out.println("edge detection fully finish");
+	}
 }
 ```
