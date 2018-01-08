@@ -15,7 +15,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferInt;
 
 import marvin.color.MarvinColorModelConverter;
 
@@ -705,9 +704,9 @@ public class MarvinImage implements Cloneable {
 		}
 	}
 	
-	public void drawRect(int x, int y, int w, int h, int length, Color c){
-		for(int i=0; i<length; i++){
-			drawRect(x+i, y+i, w-(i*2), h-(i*2), Color.green);
+	public void drawRect(int x, int y, int w, int h, int thickness, Color c){
+		for(int i=0; i<thickness; i++){
+			drawRect(x+i, y+i, w-(i*2), h-(i*2), c); // Color.green
 		}
 	}
 	
