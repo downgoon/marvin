@@ -2,6 +2,16 @@
 
 本章通过3个例子来说明一个概念：**图片就是颜色的点阵**。
 
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [图片处理初步](#图片处理初步)
+	- [ARGB](#argb)
+	- [拼图](#拼图)
+	- [滤镜](#滤镜)
+	- [画方](#画方)
+
+<!-- /TOC -->
+
 ## ARGB
 
 读取一张图片，展开它的颜色点阵：（1）宽高矩阵构成的二维数组；（2）数组每个元素拆分成ARGB值
@@ -179,5 +189,61 @@ for (int x = 0; x < imageIn.getWidth(); x++) {
             finalColor = (int)((r*0.3)+(g*0.59)+(b*0.11)); // 颜色变换
             imageOut.setIntColor(x,y,imageIn.getAlphaComponent(x, y), finalColor,finalColor,finalColor);
       }
+}
+```
+
+## 画方
+
+给定一张图片，需要在图片中画个矩形和线条。主要代码如下：
+
+``` java
+imageOut.drawRect(x, y, w, h, Color.RED); // 画一个矩形，线条粗细为1个像素
+imageOut.drawRect(x + 10, y + 10, w, h, 5, Color.GREEN); // 画一个矩形，线条粗细为5个像素
+imageOut.drawLine(x, y, x + w, y + h, Color.YELLOW); // 画一条线
+```
+
+值得说明一下，画一个粗线条的矩形，其实是重复画多个1像素的矩形来实现的。
+
+``` java
+public void drawRect(int x, int y, int w, int h, int thickness, Color c){
+		for(int i=0; i<thickness; i++) { // 粗细为5像素，则画5个
+			drawRect(x+i, y+i, w-(i*2), h-(i*2), c);
+		}
+	}
+```
+
+完整的代码：
+
+``` java
+package basic;
+
+import java.awt.Color;
+
+import marvin.image.MarvinImage;
+import marvin.io.MarvinImageIO;
+
+public class DrawRect {
+
+	public static void main(String[] args) {
+
+		MarvinImage imageIn = MarvinImageIO.loadImage("src/test/resources/howto.jpg");
+
+		System.out.println("width: " + imageIn.getWidth() + ", height: " + imageIn.getHeight());
+		System.out.println("image format name: " + imageIn.getFormatName());
+
+		MarvinImage imageOut = imageIn.clone();
+
+		int x = 100;
+		int y = 200;
+		int w = 180;
+		int h = 50;
+
+		imageOut.drawRect(x, y, w, h, Color.RED);
+		imageOut.drawRect(x + 10, y + 10, w, h, 5, Color.GREEN);
+		imageOut.drawLine(x, y, x + w, y + h, Color.YELLOW);
+
+		MarvinImageIO.saveImage(imageOut, "target/howto-draw.png");
+	}
+
 }
 ```
