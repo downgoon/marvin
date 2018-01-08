@@ -1,6 +1,79 @@
 # 图片处理初步
 
-本章通过两个例子来说明一个概念：**图片就是颜色的点阵**。
+本章通过3个例子来说明一个概念：**图片就是颜色的点阵**。
+
+## ARGB
+
+读取一张图片，展开它的颜色点阵：（1）宽高矩阵构成的二维数组；（2）数组每个元素拆分成ARGB值
+
+``` java
+package basic;
+
+import marvin.image.MarvinImage;
+import marvin.io.MarvinImageIO;
+
+public class ARGBColorMode {
+
+	public static void main(String[] args) throws Exception {
+		MarvinImage imageIn = MarvinImageIO.loadImage("src/test/resources/howto.jpg");
+
+		System.out.println("width: " + imageIn.getWidth() + ", height: " + imageIn.getHeight());
+		System.out.println("image format name: " + imageIn.getFormatName());
+
+		int count = 0;
+		for (int x = 0; x < imageIn.getWidth(); x++) {
+			for (int y = 0; y < imageIn.getHeight(); y++) {
+				Integer color = imageIn.getIntColor(x, y);
+				int r = imageIn.getIntComponent0(x, y);
+				int g = imageIn.getIntComponent1(x, y);
+				int b = imageIn.getIntComponent2(x, y);
+				int alpha = imageIn.getAlphaComponent(x, y);
+				// ARGB: %x以十六进制显示
+				if (count++ < 8) {
+					System.out.println(String.format("[%d,%d]: %x => alpha: %x @(%x, %x, %x) ", x, y, color, alpha, r, g, b));
+				}
+			}
+		}
+	}
+
+}
+
+```
+
+输出信息如下：
+
+``` text
+width: 873, height: 601
+image format name: JPEG  // 常见的JPEG和PNG
+[0,0]: ff2c56ac => alpha: ff @(2c, 56, ac)
+[0,1]: ff2c56ac => alpha: ff @(2c, 56, ac)
+[0,2]: ff2c56ac => alpha: ff @(2c, 56, ac)
+[0,3]: ff2c56ac => alpha: ff @(2c, 56, ac)
+[0,4]: ff2c56ac => alpha: ff @(2c, 56, ac)
+[0,5]: ff2c56ac => alpha: ff @(2c, 56, ac)
+[0,6]: ff2c56ac => alpha: ff @(2c, 56, ac)
+[0,7]: ff2c56ac => alpha: ff @(2c, 56, ac)
+```
+
+``ARGB`` 依次代表透明度（alpha）、红色(red)、绿色(green)、蓝色(blue)。
+以第1个点为例，``[0,0]: ff2c56ac``，ff表示透明度，2c表示红色值，56表示绿色值，ac表示蓝色值。每个通道都占1个字节。
+
+透明度分为256阶（0-255），计算机上用16进制表示为（00-ff）。透明就是0阶，不透明就是255阶,如果50%透明就是127阶（256的一半当然是128，但因为是从0开始，所以实际上是127）。透明度与alpha取值之间的关系？透明是0，透明度是0%；不透明是0xFF，透明度是100%，比如 35%的透明度的alpha值=256*35%=89.6=0x59
+
+以下代码把图片转化成透明的，并保存为png格式：
+
+``` java
+// 转成透明的：把alpha从0xFF设置为0x00
+for (int x = 0; x < imageIn.getWidth(); x++) {
+			for (int y = 0; y < imageIn.getHeight(); y++) {
+				imageIn.setAlphaComponent(x, y, 0);
+			}
+}
+
+// 注意：必须保存为png，不能为jpg。因为png才能保存alpha值
+// jpg是不支持透明,可以考虑用bmp和png
+MarvinImageIO.saveImage(imageIn, "target/argb-transparency.png");
+```
 
 ## 拼图
 
