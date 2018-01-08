@@ -34,5 +34,6 @@ git clone https://github.com/downgoon/marvin
 Dependency Tree: ``MarvinSamples`` => ``MarvinPlugins`` => ``MarvinFramework`` => ``JavaCV``
 
 - [image-basic](MarvinSamples/docs/image-basic.md): 图片处理初步之拼图和颜色滤镜
+- [color-filter](MarvinSamples/docs/color-filter.md): 常见滤镜之灰度，黑白，底片和浮雕
 - [howto](MarvinSamples/docs/howto.md): ``how to`` step-by-step showcases
 - [showcase](MarvinSamples/docs/showcase.md): user-story showcases

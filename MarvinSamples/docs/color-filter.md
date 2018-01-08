@@ -8,6 +8,10 @@
 	- [底片过滤](#底片过滤)
 	- [浮雕效果](#浮雕效果)
 	- [算法回顾](#算法回顾)
+	- [官方样例](#官方样例)
+		- [Gray](#gray)
+		- [Invert](#invert)
+		- [Sepia](#sepia)
 	- [参考资料](#参考资料)
 
 <!-- /TOC -->
@@ -222,6 +226,114 @@ for (int x = 0; x < imageIn.getWidth(); x++) {
 
 ```
 浮雕算法：新颜色 = (当前像素.RGB - 相邻像素.RGB) + 128
+```
+
+------
+
+## 官方样例
+
+官方的滤镜样例代码 [Filters.java](MarvinSamples/src/main/java/image/filters/Filters.java)，里面提到3种滤镜：Gray, Invert 和
+
+### Gray
+
+``` java
+public class GrayScale extends MarvinAbstractImagePlugin {
+	public void process
+	(
+		MarvinImage imageIn,
+		MarvinImage imageOut,
+		MarvinAttributes attributesOut,
+		MarvinImageMask mask,
+		boolean previewMode
+	) {
+
+		for (int x = 0; x < imageIn.getWidth(); x++) {
+			for (int y = 0; y < imageIn.getHeight(); y++) {
+				r = imageIn.getIntComponent0(x, y);
+				g = imageIn.getIntComponent1(x, y);
+				b = imageIn.getIntComponent2(x, y);
+				finalColor = (int)((r*0.3)+(g*0.59)+(b*0.11));
+				imageOut.setIntColor(x,y,imageIn.getAlphaComponent(x, y), finalColor,finalColor,finalColor);
+			}
+		}
+	}
+}
+```
+
+----
+
+### Invert
+
+``` java
+public class Invert extends MarvinAbstractImagePlugin {
+	public void process
+	(
+		MarvinImage imageIn,
+		MarvinImage imageOut,
+		MarvinAttributes attributesOut,
+		MarvinImageMask mask,
+		boolean previewMode
+	) {
+
+		for (int x = 0; x < imageIn.getWidth(); x++) {
+			for (int y = 0; y < imageIn.getHeight(); y++) {
+
+				r = (255-(int)imageIn.getIntComponent0(x, y));
+				g = (255-(int)imageIn.getIntComponent1(x, y));
+				b = (255-(int)imageIn.getIntComponent2(x, y));
+
+				imageOut.setIntColor(x,y,imageIn.getAlphaComponent(x, y), r,g,b);
+			}
+		}
+
+	}
+}
+```
+
+### Sepia
+
+``` java
+public class Sepia extends MarvinAbstractImagePlugin implements ChangeListener, KeyListener{
+	public void process
+	(
+		MarvinImage imageIn,
+		MarvinImage imageOut,
+		MarvinAttributes attributesOut,
+		MarvinImageMask mask,
+		boolean previewMode
+	)
+	{
+			depth = Integer.parseInt(attributes.get("intensity").toString());
+
+			for (int x = 0; x < imageIn.getWidth(); x++) {
+			for (int y = 0; y < imageIn.getHeight(); y++) {
+
+				//Captura o RGB do ponto...
+				r = imageIn.getIntComponent0(x, y);
+				g = imageIn.getIntComponent1(x, y);
+				b = imageIn.getIntComponent2(x, y);
+
+				//Define a cor como a m�dia aritm�tica do pixel...
+				corfinal = (r + g + b) / 3;
+				r = g = b = corfinal;
+
+				r = truncate(r + (depth * 2));
+				g = truncate(g + depth);
+
+				imageOut.setIntColor(x, y, imageIn.getAlphaComponent(x, y), r, g, b);
+			}
+		}
+
+
+	}
+}
+
+public int truncate(int a) {
+		if      (a <   0) return 0;
+		else if (a > 255) return 255;
+		else              return a;
+	}
+
 ```
 
 ## 参考资料
