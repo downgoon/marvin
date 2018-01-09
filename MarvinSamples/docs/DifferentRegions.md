@@ -5,6 +5,9 @@
 - [DifferentRegions 算法](#differentregions-算法)
 	- [术语定义](#术语定义)
 	- [算法描述](#算法描述)
+		- [图例说明](#图例说明)
+		- [分块计数代码](#分块计数代码)
+		- [邻居合并代码](#邻居合并代码)
 	- [代码解读](#代码解读)
 	- [使用样例](#使用样例)
 
@@ -45,6 +48,8 @@
 - 分块计数：按10*10的块将像素矩阵划分若干块，找出每块内运动像素的数量，对于超过半数的，标记为``运动区域``。
 - 邻居合并：对于所有的``运动区域``，按照纵横5个的范围进行合并。合并规则：左顶点往左靠，右底点往右靠。
 
+### 图例说明
+
 简单用图例说明下：
 
 - 分块计数
@@ -54,6 +59,98 @@
 - 邻居合并
 
 ![邻居合并](assets/motion-s2-region-merge.jpg)
+
+### 分块计数代码
+
+``` java
+for (int y = 0; y < a_imageIn.getHeight(); y++) {
+	for (int x = 0; x < a_imageIn.getWidth(); x++) {
+
+		// 当前图片: A点
+		l_redA = a_imageIn.getIntComponent0(x, y);
+		l_greenA = a_imageIn.getIntComponent1(x, y);
+		l_blueA = a_imageIn.getIntComponent2(x, y);
+
+		// 比对图片：A'点
+		l_redB = comparisonImage.getIntComponent0(x, y);
+		l_greenB = comparisonImage.getIntComponent1(x, y);
+		l_blueB = comparisonImage.getIntComponent2(x, y);
+
+		/*
+		 * 前后两张图片，在同一个点，的色差：如果大于色差阈值，则标记为发现运动像素。
+		 * 对于运动像素，计数到它所在的区域。
+		 * 像素P(x,y)，它所属的区域是R(x / subRegionSide, y / subRegionSide) 。
+		 */
+		if (Math.abs(l_redA - l_redB) > colorRange || Math.abs(l_greenA - l_greenB) > colorRange
+				|| Math.abs(l_blueA - l_blueB) > colorRange) {
+			// arrPixelsPerSubRegion 区域运动计数器（区域内运动像素的数量）
+			// p(x,y) 像素 所属的区域 是 R(x / subRegionSide, y / subRegionSide)
+			arrPixelsPerSubRegion[x / subRegionSide][y / subRegionSide]++;
+		}
+	}
+```
+
+### 邻居合并代码
+
+``` java
+private boolean JoinRegions(int[] a_rect) {
+	for (int rx = 0; rx < width / subRegionSide; rx++) {
+		for (int ry = 0; ry < height / subRegionSide; ry++) {
+			/*
+			 * 标记运动区域：arrRegionMask标记区域是否为运动区域
+			 * 如果一个区域内超过半数的点是运动点，那么这个区域就标记为运动区域
+			 * */
+			if (arrPixelsPerSubRegion[rx][ry] > (subRegionSide * subRegionSide / 2) && !arrRegionMask[rx][ry]) {
+				arrRegionMask[rx][ry] = true; // 标记为运动区域
+				a_rect[0] = rx * subRegionSide;
+				a_rect[1] = ry * subRegionSide;
+				a_rect[2] = rx * subRegionSide;
+				a_rect[3] = ry * subRegionSide;
+
+				// 每当标记一个运动区域时，立即找出它的邻居区域也是运动的，但是尚未标记的
+				testNeighbors(a_rect, rx, ry);
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+private void testNeighbors(int[] a_rect, int rx, int ry) {
+	for (int nrx = rx - 5; nrx < rx + 5; nrx++) {
+		for (int nry = ry - 5; nry < ry + 5; nry++) {
+			// 邻居区域：某个指定区域的纵横5个区域。也叫区域的邻居集。
+			if ((nrx > 0 && nrx < width / subRegionSide) && (nry > 0 && nry < height / subRegionSide)) {
+				// 对于邻居区域是运动的，但是却没有被标记的
+				if (arrPixelsPerSubRegion[nrx][nry] > (subRegionSide * subRegionSide / 2) && !arrRegionMask[nrx][nry]) {
+
+					// 跟邻居对比，左顶点往左靠
+					if (nrx * subRegionSide < a_rect[0]) { // rect.x1
+						a_rect[0] = nrx * subRegionSide;
+					}
+					if (nry * subRegionSide < a_rect[1]) { // rect.y1
+						a_rect[1] = nry * subRegionSide;
+					}
+
+					// 跟邻居对比，右底点往右靠
+					if (nrx * subRegionSide > a_rect[2]) { // rect.x2
+						a_rect[2] = nrx * subRegionSide;
+					}
+					if (nry * subRegionSide > a_rect[3]) { // rect.y2
+						a_rect[3] = nry * subRegionSide;
+					}
+
+					// 把邻居区域标记为运动区域
+					arrRegionMask[nrx][nry] = true;
+
+					// 每当标记一个运动区域时，立即找出它的邻居区域也是运动的，但是尚未标记的
+					testNeighbors(a_rect, nrx, nry);
+				}
+			}
+		}
+	}
+}
+```
 
 ## 代码解读
 
