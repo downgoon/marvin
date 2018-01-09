@@ -37,4 +37,5 @@ Dependency Tree: ``MarvinSamples`` => ``MarvinPlugins`` => ``MarvinFramework`` =
 - [color-filter](MarvinSamples/docs/color-filter.md): 常见滤镜之灰度，黑白，底片和浮雕
 - [howto](MarvinSamples/docs/howto.md): ``how to`` step-by-step showcases
 - [showcase](MarvinSamples/docs/showcase.md): user-story showcases
-- [motion-detection](MarvinSamples/docs/motion-detection.md): 运动检测
+- [算法与插件](http://marvinproject.sourceforge.net/en/plugins.html)
+  - [motion-detection](MarvinSamples/docs/motion-detection.md): 运动检测及其[DifferentRegions](MarvinSamples/docs/DifferentRegions.md)算法解读

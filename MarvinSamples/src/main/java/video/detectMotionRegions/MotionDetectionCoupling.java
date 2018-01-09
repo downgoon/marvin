@@ -12,7 +12,7 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.marvinproject.image.difference.differentRegions.DifferentRegions;
+import org.marvinproject.image.difference.differentRegions.MotionDetectionPlugin;
 
 import marvin.gui.MarvinImagePanel;
 import marvin.image.MarvinImage;
@@ -58,12 +58,15 @@ public class MotionDetectionCoupling extends JFrame implements Runnable {
 			
 			loadGUI();
 			
-			motionDetectPlugin = new DifferentRegions();
+			// motionDetectPlugin = new DifferentRegions();
+			// refactor of DifferentRegions
+			motionDetectPlugin = new MotionDetectionPlugin(); 
 			motionDetectPlugin.load();
 			motionDetectThread = new Thread(this, "motion-detection");
 			motionDetectThread.start();
 			
 		} catch (MarvinVideoInterfaceException e) {
+			System.out.println("构造异常 ...");
 			e.printStackTrace();
 		}
 	}
@@ -115,6 +118,7 @@ public class MotionDetectionCoupling extends JFrame implements Runnable {
 				
 			}
 		} catch (MarvinVideoInterfaceException e) {
+			System.out.println("Run 中异常 ...");
 			e.printStackTrace();
 		}
 	}
